@@ -1,0 +1,83 @@
+---
+ip: "192.168.56.56"
+memory: 2048
+cpus: 2
+
+provider: virtualbox
+box: laravel/homestead
+version: 12.2.0
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+  - ~/.ssh/id_rsa
+
+folders:
+  - map: C:/Users/felix/Development/Codes
+    to: /home/vagrant/codes
+
+sites:
+  - map: aemwork
+    to: /home/vagrant/codes/aemwork/public
+    php: "8.1"
+
+  - map: wtpartners
+    to: /home/vagrant/codes/wtpartners/public
+    php: "8.1"
+
+  - map: orhtruck.api
+    to: /home/vagrant/codes/orhtruck-api/public
+    php: "8.1"
+
+  - map: ptmdata.api
+    to: /home/vagrant/codes/ptm-data-api/public
+    php: "8.1"
+
+  - map: tradie.api
+    to: /home/vagrant/codes/tradiepass-api/public
+    php: "8.1"
+
+  - map: concierge.appolo.api
+    to: /home/vagrant/codes/appolo-concierge-api/public
+    php: "8.1"
+
+databases:
+  - aemwork
+  - orhtruck_api
+  - ptmdata_api
+  - tradie_api
+  - appolo_concierge
+
+features:
+  - mysql: false
+  - mariadb: true
+  - postgresql: false
+  - ohmyzsh: false
+  - webdriver: false
+
+services:
+  - enabled:
+      - "mysql"
+#    - disabled:
+#        - "postgresql@11-main"
+
+# network:
+#     - type: "public_network"
+#       ip: "192.168.86.21"
+#       bridge: "Marvell AVASTAR Wireless-AC Network Controller"
+
+ports:
+  - send: 6379
+    to: 6379
+#    - send: 33060 # MySQL/MariaDB
+#      to: 3306
+#    - send: 4040
+#      to: 4040
+#    - send: 54320 # PostgreSQL
+#      to: 5432
+#    - send: 8025 # Mailhog
+#      to: 8025
+#    - send: 9600
+#      to: 9600
+#    - send: 27017
+#      to: 27017
